@@ -1,14 +1,8 @@
-# Tenants Repo (clone local)
+# Tenants Repo (enterprise-platform-tenants)
 
-Working copy local del repositorio de tenants del Enterprise Platform.
+Repositorio de configuración dinámica de tenants del Enterprise Platform (ADR-0005).
 
-> El repo aún no existe en GitHub (Fase 0 pendiente). Cuando se cree:
-
-```bash
-git clone https://github.com/JFranOFigueroa/enterprise-platform-tenants.git .
-```
-
-## Estructura esperada
+## Estructura
 
 ```
 tenants/
@@ -22,5 +16,7 @@ tenants/
 ## Notas
 
 - Solo el **Tenant Provisioning Service** escribe en este repositorio.
-- Este clone es para desarrollo/pruebas locales; Argo CD y el TPS en el cluster
-  usan el remoto de GitHub.
+- ArgoCD (ApplicationSet `tenant-apps`) vigila `tenants/*` y despliega una
+  instancia aislada de IUMBIT por cada tenant.
+- El repo de la plataforma (código estático) vive en
+  `https://github.com/JFranOFigueroa/enterprise-platform.git`.
